@@ -26,6 +26,9 @@ if __name__ == "__main__":
                 continue
 
             out_file_path = f"{DIR}/{file_name}.mp4"
+            if os.path.exists(out_file_path):
+                print(f"Skipping \"{file_path}\": mp4 with the same name already exists")
+                continue
 
             print(f"Transcoding: {file}")
             ffmpeg.input(file_path).output(out_file_path, vcodec="libx264").run()
